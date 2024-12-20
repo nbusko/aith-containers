@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-engine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-engine
+  template:
+    metadata:
+      labels:
+        app: rag-engine
+    spec:
+      containers:
+      - name: rag-engine
+        image: rag_engine:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: app-secrets
+        resources:
+          limits:
+            memory: "2600Mi"
+        command: ["bash", "-c", "uvicorn main:app --host 0.0.0.0 --port 8000"]

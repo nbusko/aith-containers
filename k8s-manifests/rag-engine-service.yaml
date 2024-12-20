@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-engine
+spec:
+  selector:
+    app: rag-engine
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000

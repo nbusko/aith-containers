@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neural-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neural-worker
+  template:
+    metadata:
+      labels:
+        app: neural-worker
+    spec:
+      containers:
+      - name: neural-worker
+        image: neural_worker:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8001
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: app-secrets
+        resources:
+          limits:
+            memory: "4Gi"
+        command: ["bash", "-c", "uvicorn main:app --host 0.0.0.0 --port 8001"]

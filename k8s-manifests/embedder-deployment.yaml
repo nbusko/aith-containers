@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: embedder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: embedder
+  template:
+    metadata:
+      labels:
+        app: embedder
+    spec:
+      initContainers:
+      - name: init
+        image: python:3.10-slim
+        command: ["sh", "-c", "echo 'Starting services'; sleep 30; echo 'initialization is completed'"]
+      containers:
+      - name: embedder
+        image: embedder:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8002
+        envFrom:
+        - configMapRef:
+            name: app-config
+        resources:
+          limits:
+            memory: "4Gi"
+        command: ["bash", "-c", "uvicorn main:app --host 0.0.0.0 --port 8002"]
+        volumeMounts:
+        - mountPath: /cache
+          name: transformers-cache
+      volumes:
+      - name: transformers-cache
+        hostPath:
+          path: /home/orange_lime/.cache/huggingface/hub

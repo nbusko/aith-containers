@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  DB_NAME: "rag_db"
+  DB_USER: "root"
+  DB_HOST: "mysql"
+  DB_PORT: "3306"
+  EMBEDDER_URL: "http://embedder:8000"
+  BASE_GPT_URL: "https://api.proxyapi.ru/openai/v1"
+  CUDA_VISIBLE_DEVICES_EMB: "0"
+  SPECIFIC_MODEL: ""
+  TRANSFORMERS_CACHE: "/cache/"
