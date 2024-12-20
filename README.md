@@ -22,12 +22,16 @@
 
 3. Применение манифестов и проверка логов подов из `deploy.sh`:
 
-![alt text](image-1.png)
-
-4. Проверка состояния подов:
-
-   
    ![alt text](image-1.png)
 
-5. Получение доступа к сервисам:
+   ![alt text](image-2.png)
 
+
+5. Проброс портов наружу:
+
+   ```bash
+   kubectl port-forward svc/embedder 8002:8002
+   ```
+6. Сервис работает:
+   ![alt text](image-3.png)
+   ![alt text](image-5.png)
