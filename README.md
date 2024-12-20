@@ -5,28 +5,28 @@
 *Установить Kubernetes на локальную машину и развернуть тестовый сервис.*
 
 ## Запуск Minikube:
-![alt text](image.png)
+![alt text](images/image.png)
 
 ## Проверка, что Minikube работает:
-![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](images/image-1.png)
+![alt text](images/image-2.png)
 
 ## Прогоняем манифесты используя команду `kubectl apply -f <имя_файла>` для создания объектов.
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 ## Проверяем созданные ресурсы с помощью `kubectl get` и `kubectl describe`.
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 
 ## Создаем nextcloud.yml, после  запуска пода, проверяем его состояние с помощью `kubectl logs`
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 
 ## Создание service nextcloud c перенаправлением портов командой `kubectl expose deployment nextcloud --type=NodePort --port=80`
 ## Туннелирование: `minikube service nextcloud`
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 ## Nextcloud
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 ## Дополнительный компонент dashboard для minikube
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 ## Ответы на вопросы
 
